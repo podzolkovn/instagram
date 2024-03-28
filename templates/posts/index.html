@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card mt-5">
+                    <div class="card-header">{{ user_obj.username }}</div>
+                    <div class="card-body">
+                        {% for public in publics %}
+                            <div class="card mb-3">
+                                <img src="{{ public.img_files.url }}" class="card-img-top" alt="Post Image">
+                                <div class="card-body">
+                                    <h5 class="card-title">{{ public.user.username }}</h5>
+                                    <p class="card-text">{{ public.description }}</p>
+                                    <div class="d-flex justify-content-between">
+                                        <form method="post" action="{% url 'like_post' %}">
+                                            {% csrf_token %}
+                                            <input type="hidden" name="public_id" value="{{ public.id }}">
+                                            <button type="submit" class="btn btn-link text-dark"><i
+                                                    class="bi bi-heart"></i> Like ({{ public.like_public.count }})
+                                            </button>
+                                        </form>
+                                        <h6 class="text-muted">{{ public.comment_public.count }} Comments</h6>
+                                    </div>
+                                    <hr>
+                                    <div>
+                                        <form method="post">
+                                            {% csrf_token %}
+                                            <input type="hidden" name="public_id" value="{{ public.id }}">
+                                            <div class="mb-3">
+                                                <textarea class="form-control" id="comment" name="comment" rows="3"
+                                                          placeholder="Add a comment..." style="resize: none; height: 20px;"></textarea>
+                                            </div>
+                                            <button type="submit" class="btn btn-primary">Post</button>
+                                        </form>
+                                        {% for comment in public.comment_public.all %}
+                                            <div class="mt-3">
+                                            <a class="nav-link" href="{% url 'profile' user_id=comment.user.id %}">
+                    <img src="{{ comment.user.profile.avatar.url }}" style="border-radius: 50px;" width="40" height="40" class="d-inline-block align-top" alt="Profile">
+                </a>
+                                                <p class="mb-0">
+                                                    <strong>{{ comment.user.username }}</strong>: {{ comment.comment }}
+                                                </p>
+                                            </div>
+                                        {% empty %}
+                                            <p class="text-muted">No comments yet.</p>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                            </div>
+                        {% empty %}
+                            <p>No posts yet.</p>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

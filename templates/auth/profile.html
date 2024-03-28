@@ -1,0 +1,146 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="row" style="margin-top: 35px;">
+        <div class="col-md-2">
+            {% if user_obj.profile.avatar %}
+                <div class="circle">
+                    <img src="{{ user_obj.profile.avatar.url }}" class="object-fit-cover circle" alt="user_avatar">
+                </div>
+            {% endif %}
+        </div>
+        <div class="col-10 text-center d-flex">
+            <div class="col-md-2">
+                <p style="font-size: 33px; font-weight: 400;">{{ user_obj.username }}</p>
+            </div>
+            <div class="col-md-1">
+                <div>
+                    {% if user_obj != request.user %}
+                        {% if is_following %}
+                            <form action="{% url 'profile' user_id=user_obj.id %}" method="post">
+                                {% csrf_token %}
+                                <button type="submit" name="unfollow" class="follow-btn unfollow-btn">Unfollow</button>
+                            </form>
+                        {% else %}
+                            <form action="{% url 'profile' user_id=user_obj.id %}" method="post">
+                                {% csrf_token %}
+                                <button type="submit" name="follow" class="follow-btn">Follow</button>
+                            </form>
+                        {% endif %}
+
+                    {% else %}
+                        <button type="button" class="btn btn-primary settings-btn" data-bs-toggle="modal"
+                                data-bs-target="#exampleModal">Settings
+                        </button>
+                        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                             aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title fs-5" id="exampleModalLabel">Settings</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <ul class="list-group list-group-flush instagram-menu">
+                                            <li class="list-group-item">
+                                                <a href="{% url 'change-password' %}" class="instagram-link">Change
+                                                    Password</a>
+                                            </li>
+                                            <li class="list-group-item">
+                                                <a href="{% url 'business_update_user' id=user_obj.id %}"
+                                                   class="instagram-link">Business Update</a>
+                                            </li>
+                                            <li class="list-group-item">
+                                                <a href="{% url 'simple_update_user' id=user_obj.id %}"
+                                                   class="instagram-link">Edit Profile</a>
+                                            </li>
+                                            <li class="list-group-item">
+                                                <a href="{% url 'post_add' %}" class="instagram-link">Add Post</a>
+                                            </li>
+                                            <li class="list-group-item">
+                                                <a href="{% url 'logout' %}" class="instagram-link">Logout</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="follow-info">
+        <div class="row">
+            <div class="col-md-2"><h5>{{ user_obj.public_users.count }} posts </h5></div>
+            <div class="col-md-2"><h5> {{ user_obj.followers_set.count }} followers</h5></div>
+            <div class="col-md-2"><h5>{{ user_obj.following_set.count }} following</h5></div>
+        </div>
+        <p style="margin-top: 15px;">{% if user_obj.profile.description %}About:
+            {{ user_obj.profile.description }} {% else %} About: {% endif %}</p>
+    </div>
+
+    <div class="row" style="margin-top: 35px;">
+        <div class="col-12">
+            <h2>Posts</h2>
+            <hr>
+        </div>
+    </div>
+    <div class="row">
+        {% for post in user_obj.public_users.all %}
+
+            <div class="col-md-4">
+                <div class="card mb-4 shadow-sm">
+                    <a class="btn" data-bs-toggle="modal" data-bs-target="#postModal{{ post.id }}"><img
+                            class="card-img-top" src="{{ post.img_files.url }}" alt="Post Image"></a>
+                </div>
+                <div class="modal fade" id="postModal{{ post.id }}" tabindex="-1"
+                     aria-labelledby="postModal{{ post.id }}Label"
+                     aria-hidden="true">
+                    <div class="modal-dialog modal-lg">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="postModal{{ post.id }}Label">@{{ post.user.username }}</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <img src="{{ post.img_files.url }}" class="img-fluid" alt="Post Image">
+                                <div class="post-details row">
+                                    <div class="col-md-3">
+                                        <div class="post-likes">
+                                            <form method="post" action="{% url 'like_post' %}">
+                                                {% csrf_token %}
+                                                <h5>{{ post.like_public.count }}
+                                                     <button type="submit" name="public_id" value="{{ post.id }}">
+                                                       Like
+                                                    </button>
+                                                </h5>
+                                            </form>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="post-comments">
+                                            <h5>Comments: {{ post.comment_public.count }}</h5>
+                                        </div>
+                                    </div>
+                                </div>
+                                <p>{{ post.description }}</p>
+                                {% for comment in post.comment_public.all %}
+                                    <p><a href="{% url 'profile' user_id=comment.user.id %}"
+                                          style="text-decoration: none; color: darkgrey">{{ comment.user.username }}</a>: {{ comment.comment }}
+                                    </p>
+                                {% empty %}
+                                    <p>No comments</p>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% empty %}
+            <h5 style="text-align: center; color: #e7e7e7; font-size: 40px; margin-top: 100px;">No post</h5>
+        {% endfor %}
+    </div>
+{% endblock %}

@@ -1,0 +1,335 @@
+.navbar {
+    background-color: white;
+}
+
+.bg-grey {
+    background-color: #fafafa;
+}
+
+.brdr {
+    border: solid #e8e6e1 1px;
+    padding-top: 1px;
+    padding-left: 1px;
+    padding-right: 1px;
+}
+
+.login-form {
+    background-color: white;
+    width: 30%;
+    margin: 0 auto;
+    padding-top: 20px;
+    padding-bottom: 30px;
+    margin-top: 30px;
+    border: solid #e8e6e1 1px;
+}
+
+/* Изменение существующих классов */
+.circle img {
+    border-radius: 50%;
+    width: 100%;
+    height: auto;
+}
+
+/* Добавление новых классов */
+.profile-info {
+    margin-top: 20px;
+    text-align: left;
+}
+
+.settings-modal .modal-content {
+    border-radius: 10px;
+}
+
+.settings-modal .modal-header {
+    border-bottom: none;
+}
+
+.settings-modal .modal-title {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.settings-modal .list-group-item {
+    border: none;
+}
+
+.settings-modal .list-group-item a {
+    color: #000;
+    text-decoration: none;
+    font-size: 18px;
+    padding: 10px;
+}
+
+.settings-modal .list-group-item a:hover {
+    background-color: #f0f0f0;
+}
+
+.settings-btn {
+    background-color: #262626;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.settings-btn:hover {
+    background-color: #000;
+}
+
+.follow-info {
+    margin-top: 15px;
+}
+
+.follow-info p {
+    font-size: 16px;
+    color: #737373;
+}
+
+.follow-btn {
+    border: 1px solid #ccc;
+    padding: 5px 15px;
+    font-size: 14px;
+    border-radius: 20px;
+    background-color: transparent;
+    transition: all 0.3s;
+}
+
+.follow-btn:hover {
+    background-color: #007bff;
+    color: #fff;
+}
+
+.unfollow-btn {
+    background-color: #ff0000;
+    color: #fff;
+}
+
+.unfollow-btn:hover {
+    background-color: #ff6666;
+}
+
+.instagram-menu {
+    padding: 0;
+}
+
+.instagram-link {
+    color: #262626;
+    text-decoration: none;
+    font-size: 16px;
+}
+
+.instagram-link:hover {
+    color: #405de6;
+}
+
+.instagram-link:active {
+    color: #6a0dad;
+}
+
+.post-link:hover {
+    background-color: rgba(0, 0, 0, 0.5); /* Темный фон при наведении */
+}
+
+/* Стили для модального окна */
+.modal-content {
+    /*background-color: transparent;*/
+    border: none;
+}
+
+.modal {
+    width: 90%;
+    height: 90%;
+}
+
+.modal-body {
+    text-align: center;
+    padding: 20px;
+}
+
+.modal-content {
+    background-color: #fff;
+    border-radius: 8px;
+    max-height: 100%;
+    overflow-y: auto;
+}
+
+.modal-header {
+    border-bottom: none;
+}
+
+.modal-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+}
+
+.post-image {
+    width: 100%;
+    border-radius: 8px;
+    margin-bottom: 15px;
+}
+
+.post-details {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    margin-left: 25px;
+}
+
+.post-likes, .post-comments {
+    margin-top: 15px;
+    font-size: 0.9rem;
+    color: #8e8e8e;
+}
+
+.post-likes button {
+    background: none;
+    border: none;
+    color: #262626;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.post-likes button:hover {
+    text-decoration: underline;
+}
+
+.post-likes button:focus {
+    outline: none;
+}
+
+.post-comments h5 {
+    margin-bottom: 0;
+    color: #8e8e8e;
+}
+
+.comment {
+    background-color: #fafafa;
+    padding: 8px 12px;
+    border-radius: 8px;
+    margin-top: 10px;
+    text-align: left;
+}
+
+.comment a {
+    color: #003569;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.comment p {
+    margin: 5px 0;
+}
+
+.no-comments {
+    color: #8e8e8e;
+    font-style: italic;
+}
+
+/* Стили для ленты */
+.card {
+    border-radius: 16px;
+    border: 1px solid #ccc;
+    margin-bottom: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.card-header {
+    background-color: #fff;
+    border-bottom: none;
+    font-weight: bold;
+}
+
+.card-body {
+    padding: 20px;
+}
+
+.card-img-top {
+    border-radius: 16px 16px 0 0;
+    max-height: 400px;
+    object-fit: cover;
+}
+
+.card-title {
+    font-weight: bold;
+}
+
+.btn-link {
+    font-size: 0.9rem;
+    text-decoration: none;
+}
+
+.bi-heart {
+    color: #ff5858;
+}
+
+.text-muted {
+    font-size: 0.8rem;
+}
+
+.form-control {
+    border-radius: 24px;
+    border: 1px solid #ccc;
+}
+
+.btn-primary {
+    border-radius: 24px;
+    background-color: #0095f6;
+    border: none;
+}
+
+.btn-primary:hover {
+    background-color: #0077b5;
+}
+
+/* Для отступа между комментариями */
+.mt-3 {
+    margin-top: 15px;
+}
+
+.text-muted {
+    color: #8e8e8e;
+}
+
+/*register form*/
+.instagram-input {
+    background-color: #fafafa;
+    border: 1px solid #dbdbdb;
+    border-radius: 6px;
+    font-size: 10px;
+    padding: 10px;
+    margin-bottom: 10px;
+    font-weight: normal;
+}
+
+.instagram-input:focus {
+    outline: none;
+    border-color: #8e8e8e;
+    box-shadow: 0 0 0 1px #8e8e8e;
+}
+
+.instagram-btn {
+    background-color: #0095f6;
+    border: none;
+    border-radius: 10px;
+    color: #fff;
+    font-weight: bold;
+    font-size: 14px;
+    padding: 10px;
+    margin-top: 10px;
+    width: 100%;
+}
+
+.instagram-btn:hover {
+    background-color: #0077b5;
+}
+
+.description {
+    text-align: center;
+    font-size: 14px;
+    margin-bottom: 20px;
+    color: #737373;
+}

@@ -1,0 +1,30 @@
+
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class="login-form">
+    <form action="" method="post" class="text-center">
+        {% csrf_token %}
+        <img src="{% static 'img/icon2.png' %}" style="margin-top: 5px; width:150px; height:50px; " alt="icon">
+        <div class="form-group text-center col-10 mx-auto" style="margin-top: 15px;">
+
+            <input type="text" name="username" style="background-color: #fafafa;" class="form-control" id="username" placeholder="Enter username or email" required>
+        </div>
+        <div class="form-group text-center col-10 mx-auto" style="margin-top: 15px;">
+
+            <input type="password" name="password" style="background-color: #fafafa;" class="form-control" id="password" placeholder="Enter password" required>
+        </div>
+        {% if has_errors %}
+            <p class="form-error" style="color: #7a0202">Invalid username or password</p>
+        {% endif %}
+        <button type="submit" class="col-10" style="color: white; background-color: #4db5f9; border: 1px solid #4db5f9;border-radius: 7px; padding: 5px; margin-top: 15px">
+            Login
+        </button>
+        
+        <hr style="margin-top: 50px;">
+        <p style="margin-top: 25px;">Don't have an account? <a style="text-decoration: none;" href="{% url 'register' %}">Sing up</a>
+        </p>
+    </form>
+</div>
+{% endblock %}
+

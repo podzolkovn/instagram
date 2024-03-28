@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1 style="text-align: center; margin-top: 20px;">Search Results for "{{ query }}"</h1>
+<ul style="list-style-type: none; padding: 0; margin: 20px;">
+    {% for user in results %}
+        <li style="margin-bottom: 20px; border: 1px solid #ddd; padding: 10px; border-radius: 5px; display: flex; align-items: center;">
+    <a href="{% url 'profile' user_id=user.id %}" style="text-decoration: none; color: #333; display: flex; align-items: center;">
+        {% if user.profile.avatar %}
+            <img src="{{ user.profile.avatar.url }}" alt="{{ user.username }} Avatar" style="max-width: 60px; border-radius: 50%; margin-right: 15px;">
+        {% endif %}
+        <div>
+            <h2 style="margin-bottom: 5px;">{{ user.username }}</h2>
+            <p style="margin: 0;">{{ user.first_name }} {{ user.last_name }}</p>
+            <p style="margin: 0;">{{ user.profile.info }}</p>
+        </div>
+    </a>
+</li>
+    {% empty %}
+        <p style="text-align: center;">No results found.</p>
+    {% endfor %}
+</ul>
+
+{% endblock %}

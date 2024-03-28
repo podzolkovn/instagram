@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class="login-form my-custom-form" style="border-radius: 5px;">
+    <img src="{% static 'img/icon2.png' %}" style="margin-top: 5px; width:150px; height:50px; margin-left: 70px;" class="d-inline-block align-top" alt="Instagram icon">
+    <h6 class="description">Sign up to see photos and videos from your friends.</h6>
+    <form action="" method="post" style="margin: 25px;">
+        {% csrf_token %}
+        <div class="form-group">
+            <input type="text" name="username" class="form-control instagram-input" placeholder="Username" required>
+        </div>
+        <div class="form-group">
+            <input type="text" name="first_name" class="form-control instagram-input" placeholder="First Name" required>
+        </div>
+        <div class="form-group">
+            <input type="text" name="last_name" class="form-control instagram-input" placeholder="Last Name" required>
+        </div>
+        <div class="form-group">
+            <input type="password" name="password1" class="form-control instagram-input mb-3" placeholder="Password" autocomplete="new-password" required>
+        </div>
+        <div class="form-group">
+            <input type="password" name="password2" class="form-control instagram-input" placeholder="Confirm Password" autocomplete="new-password" required>
+        </div>
+        <div class="form-group">
+            <input type="email" name="email" class="form-control instagram-input" placeholder="Email" required>
+        </div>
+        <div class="form-group">
+            <input type="tel" name="phone_number" class="form-control instagram-input" placeholder="Phone Number" required>
+        </div>
+        <button type="submit" class="btn btn-primary btn-block instagram-btn">Sign Up</button>
+        <hr style="margin-top: 50px;">
+        <p style="margin-top: 25px; text-align: center">Have an account? <a style="text-decoration: none;" href="{% url 'login' %}">Log in</a>
+        </p>
+    </form>
+</div>
+{% endblock %}
